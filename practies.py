@@ -40,17 +40,11 @@ class poseDetector():
         return self.lmList
 
     def findAngle(self, img, p1, p2, p3, draw=True):
-        #xac dinh cac toa do
+
         x1, y1 = self.lmList[p1][1:]
         x2, y2 = self.lmList[p2][1:]
         x3, y3 = self.lmList[p3][1:]
-        #tinhs toan goc
 
-        # u = [x1 - x2, y1 - y2]
-        # v = [x3 - x2, y3 - y2]
-        # cosin = ((u[0] * v[0]) + (u[1] * v[1])) / (
-        #                 math.sqrt(u[0] * u[0] + u[1] * u[1]) * math.sqrt(v[0] * v[0] + v[1] * v[1]))
-        # angle = math.degrees(math.acos(cosin))
 
 
         angle = math.degrees(math.atan2(y3-y2,x3-x2)-math.atan2(y1-y2,x1-x2))
@@ -59,7 +53,6 @@ class poseDetector():
             angle +=360
 
 
-        #ve canh tay
         if draw:
             cv2.circle(img, (x1, y1), 20 ,(255,0,0), cv2.FILLED)
             cv2.circle(img, (x1, y1), 25, (255, 0, 0), 2)
@@ -73,21 +66,21 @@ class poseDetector():
         return angle
 
     def lenght(self, img, p1, p2):
-        #xac dinh cac toa do
-        x1, y1 = self.lmList[p1][1:] #khuyu tay
-        x2, y2 = self.lmList[p2][1:] #co tay
+
+        x1, y1 = self.lmList[p1][1:]
+        x2, y2 = self.lmList[p2][1:] 
         u = [x1 - x2, y1 - y2]
         dodai = int(math.sqrt(u[0] * u[0] + u[1] * u[1]))
         return dodai
 
 
-    #tinh goc lech trong dembbell_shoulder
+
     def cosin2goc (self, img, p1, p2, p3, draw=True):
-        #xac dinh cac toa do
-        x1, y1 = p1                 # toa do co tay chuan
-        x2, y2 = self.lmList[p2][1:]#toa do khuy tay
-        x3, y3 = self.lmList[p3][1:] #toa do co tay
-        #tinhs toan goc
+
+        x1, y1 = p1                 
+        x2, y2 = self.lmList[p2][1:]
+        x3, y3 = self.lmList[p3][1:] 
+
 
         u = [x1 - x2, y1 - y2]
         v = [x3 - x2, y3 - y2]
@@ -104,15 +97,7 @@ class poseDetector():
                 cv2.line(img, (x2, y2), (x3, y3), (0, 0, 255), 10)
                 cv2.circle(img, (x3, y3), 20, (0, 0, 255), cv2.FILLED)
                 cv2.circle(img, (x3, y3), 25, (0, 0, 255), 2)
-            # else:
-            #     cv2.circle(img, (x1, y1), 10, (255, 0, 0), cv2.FILLED)
-            #     cv2.circle(img, (x1, y1), 15, (255, 0, 0), 2)
-            #     cv2.line(img, (x1, y1), (x2, y2), (255, 255, 255), 5)
-            #     cv2.circle(img, (x2, y2), 10, (255, 0, 0), cv2.FILLED)
-            #     cv2.circle(img, (x2, y2), 15, (255, 0, 0), 2)
-            #     cv2.line(img, (x2, y2), (x3, y3), (255, 255, 255), 5)
-            #     cv2.circle(img, (x3, y3), 10, (255, 0, 0), cv2.FILLED)
-            #     cv2.circle(img, (x3, y3), 15, (255, 0, 0), 2)
+
 
         return  angle
 
