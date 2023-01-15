@@ -1,4 +1,4 @@
-# import thu vien
+
 from PyQt5 import QtGui, QtWidgets, QtCore
 import sys, time, threading, home, count, analyst, cardio, demtg, playsound, winsound
 import barbell_cruls as bc
@@ -6,13 +6,13 @@ import dumbbell_shoulder as ds
 import yoga
 import texttime as tt
 
-# khoi tao bien
+
 ui = ''
 cp = 0
 img = ''
-flagRight = 1  # 1 la co the bac RIGHT
-check = False  # kiem tra yoga dung sai
-check2 = False  # khong che nhac
+flagRight = 1  
+check = False  
+check2 = False 
 giay_tt = False
 
 app = QtWidgets.QApplication(sys.argv)
@@ -27,9 +27,7 @@ app.aboutToQuit.connect(test)
 
 tt.init()
 
-########################################################
-##   GIAO DIEN  CHINH VA CHUYEN FORM
-########################################################
+
 def mainUi():
 	global ui, cp
 	playS("sound\\Button_1_down.wav", 0)  # am thanh ban phim
@@ -97,9 +95,7 @@ def cardioUi():
 	MainWindow.show()
 
 
-############################################################################
-#######  HAM CHUC NANG CHO CAC FORM
-############################################################################
+
 def stop():
 	global ui, cp
 	playS("sound\\Button_1_down.wav", 0)
@@ -146,7 +142,7 @@ def count_task(z):  # z la chuc nang duoc quy dinh trong form COUNT_REP
 		ui.radioR.setVisible(False)
 
 
-# ANALYST
+
 def analyst_task():
 	global cp
 	# playS("sound\\Button_1_down.wav", 0)
@@ -161,7 +157,6 @@ def analyst_task():
 	tt.giay = 0
 
 
-# YOGA trong ANALYST
 def yoga_task():
 	global cp, check2
 	playS("sound\\Button_1_down.wav", 0)
@@ -175,7 +170,6 @@ def yoga_task():
 
 
 
-# cardio
 def cardio_task():
 	global cp, phut_tt
 	playS("sound\\Button_1_down.wav", 0)
@@ -189,20 +183,20 @@ def cardio_task():
 	phut_tt = False
 
 
-# hien thi anh trong khung information
+
 def hienhinh(a, b, per):
 	if (per <= 20):
-		# hien thi anh len khung information
-		image_path = "hinh\\" + a  # path to your image file
-		image_profile = QtGui.QImage(image_path)  # QImage object
+		
+		image_path = "" + a 
+		image_profile = QtGui.QImage(image_path)  
 		image_profile = image_profile.scaled(261, 241, aspectRatioMode=QtCore.Qt.IgnoreAspectRatio,
 											 transformMode=QtCore.Qt.SmoothTransformation)  # To scale image for example and keep its Aspect Ration
 		ui.information.setPixmap(QtGui.QPixmap.fromImage(image_profile))
 
 	elif (per >= 90):
-		# label_Image = QtGui.QLabel(frame)
-		image_path = "hinh\\" + b  # path to your image file
-		image_profile = QtGui.QImage(image_path)  # QImage object
+
+		image_path = "" + b  # path to your image file
+		image_profile = QtGui.QImage(image_path)  
 		image_profile = image_profile.scaled(261, 241, aspectRatioMode=QtCore.Qt.IgnoreAspectRatio,
 											 transformMode=QtCore.Qt.SmoothTransformation)  # To scale image for example and keep its Aspect Ration
 		ui.information.setPixmap(QtGui.QPixmap.fromImage(image_profile))
@@ -211,27 +205,25 @@ def hienhinh(a, b, per):
 def hienhinh_cardio(a, b, giay, thoigiantap):
 	global check2
 	if (giay < thoigiantap):
-		# hien thi anh len khung information
-		image_path = "hinh\\" + a  # path to your image file
+	
+		image_path = "hinh\\" + a  
 
-		image_profile = QtGui.QImage(image_path)  # QImage object
+		image_profile = QtGui.QImage(image_path)  
 		image_profile = image_profile.scaled(261, 241, aspectRatioMode=QtCore.Qt.IgnoreAspectRatio,
 											 transformMode=QtCore.Qt.SmoothTransformation)  # To scale image for example and keep its Aspect Ration
 		ui.information.setPixmap(QtGui.QPixmap.fromImage(image_profile))
 		check2 = True
 
 	elif (giay > thoigiantap):
-		# label_Image = QtGui.QLabel(frame)
-		image_path = "hinh\\" + b  # path to your image file
-		image_profile = QtGui.QImage(image_path)  # QImage object
+
+		image_path = "hinh\\" + b
+		image_profile = QtGui.QImage(image_path)  
 		image_profile = image_profile.scaled(261, 241, aspectRatioMode=QtCore.Qt.IgnoreAspectRatio,
 											 transformMode=QtCore.Qt.SmoothTransformation)  # To scale image for example and keep its Aspect Ration
 		ui.information.setPixmap(QtGui.QPixmap.fromImage(image_profile))
 
 
-############################################################################
-#######  CHUONG TRINH CHINH
-############################################################################
+
 def main():
 	global img, ui, rep, func, flagRight, check, dem, yoga_hinh, phut_tt, check2
 	print("bat luong")
