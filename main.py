@@ -110,9 +110,7 @@ def stop():
 	ui.information.setText(" ")
 
 
-# COUNT_REP
-def count_task(z):  # z la chuc nang duoc quy dinh trong form COUNT_REP
-	# #func (function): lay chuc nang trong thu vien barbell_cruls
+def count_task(z):  
 	global cp, func, giay_tt
 	playS("sound\\Button_1_down.wav", 0)
 	playS("sound\\count.wav", 1)
@@ -198,7 +196,7 @@ def hienhinh(a, b, per):
 		image_path = "" + b  # path to your image file
 		image_profile = QtGui.QImage(image_path)  
 		image_profile = image_profile.scaled(261, 241, aspectRatioMode=QtCore.Qt.IgnoreAspectRatio,
-											 transformMode=QtCore.Qt.SmoothTransformation)  # To scale image for example and keep its Aspect Ration
+											 transformMode=QtCore.Qt.SmoothTransformation)  
 		ui.information.setPixmap(QtGui.QPixmap.fromImage(image_profile))
 
 
@@ -210,7 +208,7 @@ def hienhinh_cardio(a, b, giay, thoigiantap):
 
 		image_profile = QtGui.QImage(image_path)  
 		image_profile = image_profile.scaled(261, 241, aspectRatioMode=QtCore.Qt.IgnoreAspectRatio,
-											 transformMode=QtCore.Qt.SmoothTransformation)  # To scale image for example and keep its Aspect Ration
+											 transformMode=QtCore.Qt.SmoothTransformation)  
 		ui.information.setPixmap(QtGui.QPixmap.fromImage(image_profile))
 		check2 = True
 
@@ -219,7 +217,7 @@ def hienhinh_cardio(a, b, giay, thoigiantap):
 		image_path = "hinh\\" + b
 		image_profile = QtGui.QImage(image_path)  
 		image_profile = image_profile.scaled(261, 241, aspectRatioMode=QtCore.Qt.IgnoreAspectRatio,
-											 transformMode=QtCore.Qt.SmoothTransformation)  # To scale image for example and keep its Aspect Ration
+											 transformMode=QtCore.Qt.SmoothTransformation)  
 		ui.information.setPixmap(QtGui.QPixmap.fromImage(image_profile))
 
 
@@ -229,9 +227,9 @@ def main():
 	print("bat luong")
 	while True:
 
-		#  chuc nang FORM COUNT_REP
+
 		if cp == 1:
-			# xet truong hop barbell_curls trai phai
+
 			if func < 2:
 				if (ui.radioR.isChecked() and flagRight == 1):
 					flagRight = 0
@@ -245,17 +243,17 @@ def main():
 					bc.count = 0
 					playS("sound\\Button_1_down.wav", 0)
 					playS("sound\\count.wav", 1)
-			# truyen thong so chay chuong trinh  va hien thi anh len khung giao dien
+
 			img, per, rep = bc.run(600, 450, func)
 			image = QtGui.QImage(img, img.shape[1], img.shape[0], QtGui.QImage.Format_RGB888).rgbSwapped()
 
 			if cp == 1:
 
-				# hien thi hinh anh len khung view label
+
 				ui.view.setPixmap(QtGui.QPixmap.fromImage(image))
 				ui.lcdNumber.display(rep)
 
-				# hien thi dem thoi gian
+
 				ui.timeLabel.setText("00:" + str(int(tt.giay / 10)) + str(int(tt.giay % 10)))
 
 				if func < 2:
@@ -268,49 +266,47 @@ def main():
 					hienhinh("push_up.jpg", "push_down.jpg", per)
 
 
-		# chuc nang FORM ANALYST
 		elif cp == 2:
 			img, per, rep = ds.run(600, 450)  # chay ham run trong dumbbell shoulder press
 			image = QtGui.QImage(img, img.shape[1], img.shape[0], QtGui.QImage.Format_RGB888).rgbSwapped()
 			if cp == 2:
-				# hien thi thoi gian
+
 				ui.timeLabel.setText('00:' + str(int(tt.giay / 10)) + str(int(tt.giay % 10)))
 
-				# hien thi hinh anh len khung view label
+
 				ui.view.setPixmap(QtGui.QPixmap.fromImage(image))
 				ui.lcdNumber.display(rep)
 				hienhinh("dumbbell_down.jpg", "dumbbell_up.jpg", per)
 
-		# chuc nang YOGA trong ANALYST
+
 		elif cp == 3:
 			img, check, dem, yoga_hinh = yoga.run(600, 450, 30)  # z la thoi gian uoc luong
 			image = QtGui.QImage(img, img.shape[1], img.shape[0], QtGui.QImage.Format_RGB888).rgbSwapped()
 			if cp == 3:
-				# hien thi hinh anh len khung view label
+
 				ui.view.setPixmap(QtGui.QPixmap.fromImage(image))
-				ui.information_2.setVisible(check)  # hien thi hinh "dau tich xanh" khi dung
+				ui.information_2.setVisible(check)  
 				ui.timeLabel.setText("00:" + str(int(dem / 10)) + str(dem % 10))
 
 				if yoga_hinh == 1:
-					image_path = "yoga\\1.jpg"  # path to your image file
-					image_profile = QtGui.QImage(image_path)  # QImage object
+					image_path = ""  
+					image_profile = QtGui.QImage(image_path)  
 					image_profile = image_profile.scaled(261, 241, aspectRatioMode=QtCore.Qt.IgnoreAspectRatio,
-														 transformMode=QtCore.Qt.SmoothTransformation)  # To scale image for example and keep its Aspect Ration
-					ui.information.setPixmap(QtGui.QPixmap.fromImage(image_profile))
+														 transformMode=QtCore.Qt.SmoothTransformation)  
 				elif yoga_hinh == 2:
-					image_path = "yoga\\2.jpg"  # path to your image file
-					image_profile = QtGui.QImage(image_path)  # QImage object
+					image_path = ""  
+					image_profile = QtGui.QImage(image_path)  
 					image_profile = image_profile.scaled(261, 241, aspectRatioMode=QtCore.Qt.IgnoreAspectRatio,
-														 transformMode=QtCore.Qt.SmoothTransformation)  # To scale image for example and keep its Aspect Ration
+														 transformMode=QtCore.Qt.SmoothTransformation)  
 					ui.information.setPixmap(QtGui.QPixmap.fromImage(image_profile))
 				elif yoga_hinh == 3:
 					image_path = "yoga\\5.jpg"  # path to your image file
-					image_profile = QtGui.QImage(image_path)  # QImage object
+					image_profile = QtGui.QImage(image_path) 
 					image_profile = image_profile.scaled(261, 241, aspectRatioMode=QtCore.Qt.IgnoreAspectRatio,
-														 transformMode=QtCore.Qt.SmoothTransformation)  # To scale image for example and keep its Aspect Ration
+														 transformMode=QtCore.Qt.SmoothTransformation)  
 					ui.information.setPixmap(QtGui.QPixmap.fromImage(image_profile))
 
-				#AM THANH KHI HOAN THANH
+
 				elif yoga_hinh == 4:
 					image_path = "yoga\\finish_yoga.jpg"  # path to your image file
 					image_profile = QtGui.QImage(image_path)  # QImage object
@@ -323,28 +319,27 @@ def main():
 						playS("sound\\hoanthanh.wav",0)
 						playS("sound\\task_beat.wav", 1)
 						check2 = False
-				# ui.lcdNumber.display(rep)
-				# hienhinh("dumbbell_down.jpg", "dumbbell_up.jpg", per)
 
-		# cardio
+
+
 		elif cp == 4:
-			img = yoga.cardio(600, 450)  # z la thoi gian uoc luong
+			img = yoga.cardio(600, 450)  
 			image = QtGui.QImage(img, img.shape[1], img.shape[0], QtGui.QImage.Format_RGB888).rgbSwapped()
 			if cp == 4:
-				# hien thi hinh anh len khung view label
+				
 				ui.view.setPixmap(QtGui.QPixmap.fromImage(image))
-				if (tt.phut < 2):  # khong che 2 bai tap trong cardio
+				if (tt.phut < 2): 
 					hienhinh_cardio("H" + str(tt.phut + 1) + ".png", "breaktime.png", tt.giay, 40)
-					# ui.information_2.setVisible(check)  # hien thi hinh "dau tich xanh" khi dung
+					
 					ui.timeLabel.setText(str(int(tt.phut / 10)) + str(tt.phut % 10) + ":" +
 										 str(int(tt.giay / 10)) + str(tt.giay % 10))
 
 					if (tt.phut < 1 and tt.giay >= 55 and check2 == True):
-						#print("chuongggg")
+				
 						playS1("sound\\readygo.mp3")
 						check2 = False
 
-				# dung cardio
+			
 
 				elif (tt.phut == 2 and phut_tt == False):
 					rep += 1
@@ -362,9 +357,7 @@ def main():
 
 
 # AM THANH
-def h_playS(a, b):  # b la cho phep chay vong lap    #0 la 1 lan, 1 la nhieu lan
-	# AM THANH
-	# playsound.playsound(a)
+def h_playS(a, b):  
 	winsound.PlaySound(a, winsound.SND_LOOP + (winsound.SND_ASYNC & b))
 
 
@@ -373,8 +366,7 @@ def playS(a, b):
 	s.start()
 
 
-def h_playS1(a):  # b la cho phep chay vong lap    #0 la 1 lan, 1 la nhieu la
-	# AM THANH
+def h_playS1(a):  
 	playsound.playsound(a)
 
 
